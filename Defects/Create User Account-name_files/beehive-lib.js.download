@@ -1,0 +1,62 @@
+﻿var beehive = {
+    alert: function (message, callback) {
+        if (typeof message === "undefined" || message == null) {
+            throw "No message parameter passed for alert";
+        }
+
+        showModal(message)
+            .always(function () {
+                if (typeof callback === "function") {
+                    callback();
+                }
+            });
+
+        function showModal(message) {
+            var deferred = $.Deferred();
+
+            var revealModal = "<div id='beehive-alert' class='reveal reveal-modal' data-reveal aria-labelledby='modalTitle' aria-hidden='true' role='dialog'>"
+                + "<p class='lead' class='modal-body center'>" + message + "</p>"
+                + "<button class='close-button' data-close aria-label='Close modal' type='button'><span aria-hidden='true'>&times;</span>"
+                + "</button>"
+                + "</div>";
+            $("body").append(revealModal);
+            //- re-invoke foundation
+            //$(document).foundation();
+            var $modal = $('#beehive-alert');
+            $modal.foundation();
+            $modal.foundation('open');
+            $modal.on("closed.zf.reveal", function () {
+                $modal.remove();
+                $("body #beehive-alert").remove();
+                console.log("it goes here");
+                console.log("test test test");
+                deferred.resolve();
+            });
+            return deferred.promise();
+        }
+
+    },
+};
+(function ($) {
+    $.fn.button = function (options) {
+        return this.each(function () {
+            var defaultText = 'Loading..';
+            var loadingText = $(this).attr('data-loading-text');
+            console.log(loadingText);
+            var originalText = $(this).text();
+            if (options === "loading") {
+                if (loadingText === "undefined") {
+                    loadingText = defaultText;
+                }
+                $(this).text(loadingText);
+                $(this).attr('data-loading-text', originalText);
+                $(this).addClass("disabled");
+            } else if (options === "reset") {
+                $(this).text(loadingText);
+                $(this).attr('data-loading-text', originalText);
+                $(this).removeClass("disabled");
+            }
+        });
+    };
+})(jQuery);
+

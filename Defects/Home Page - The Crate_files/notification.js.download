@@ -1,0 +1,178 @@
+﻿/// <reference path="../jquery-1.10.2.min.js" />
+/// <reference path="../jquery.signalR-2.2.0.min.js" />
+$(function () {
+    notificationHub = $.connection.NotificationHub;
+
+    notificationHub.client.checkNewNotification = function () {
+        checkNotifications();
+    };
+    //console.log("before state: " + $.connection.hub.state);
+    $.connection.hub.start().done(function () {
+        console.log('Now connected, connection ID=' + $.connection.hub.id);
+        //notificationHub.server.sendNewNotification();
+    })
+    .fail(function () {
+        console.log('Could not Connect!');
+    });
+    //console.log("after state: " + $.connection.hub.state);
+
+
+
+
+    function NotificationViewModel() {
+        var self = this;
+        self.notifications = ko.observableArray(data);
+        self.chosenMsgData = ko.observable();
+        self.newMsgCount = ko.observable();
+        self.pageNumber = ko.observable(1);
+        self.nbPerPage = 8;
+
+        self.totalPages = ko.computed(function () {
+            var div = Math.floor(self.notifications().length / self.nbPerPage);
+            div += self.notifications().length % self.nbPerPage > 0 ? 1 : 0;
+            return div + 1;
+        });
+
+        self.paginated = ko.computed(function () {
+            var first = (self.pageNumber() -1) * self.nbPerPage;
+            return self.notifications.slice(first, first + self.nbPerPage);
+        });
+
+        self.hasPrevious = ko.computed(function () {
+            return self.pageNumber() !== 1;
+        });
+
+        self.hasNext = ko.computed(function () {
+            return ((self.pageNumber() +1 ) !== self.totalPages());
+        });
+
+        self.next = function () {
+            if (self.pageNumber() < self.totalPages()) {
+                self.pageNumber(self.pageNumber() + 1);
+            }
+
+        };
+
+        self.previous = function () {
+            if (self.pageNumber() != 0) {
+                self.pageNumber(self.pageNumber() - 1);
+            }
+        }
+
+        self.goToMsg = function (notification) {
+            $.get('/Notification/GetNotificationDetail', { Id: notification.Id }, self.chosenMsgData);
+            notification.IsRead(notification.IsRead);
+            if (typeof updateNotificationDashboard == 'function')
+                updateNotificationDashboard("markAsRead", notification);
+            //console.log(notification);
+            $('#MsgModel').foundation('open');
+        };
+
+        self.markAllRead = function () {
+            $.ajax({
+                url: '/Notification/ReadAll',
+                type: 'post',
+                success: function () {
+                    checkNotifications();
+                    if (typeof updateNotificationDashboard == 'function')
+                        updateNotificationDashboard("markAllRead");
+                }
+            });
+
+            //self.notifications(self.notifications);
+            //console.log(self.notifications);
+        };
+
+        self.getNewMsgCount = ko.computed(function () {
+            console.log("getNewMsgCount");
+            var count = 0;
+            $.each(self.notifications(), function (index, item) {
+                if (!item.IsRead()) {
+                    count++;
+                }
+            });
+            return count;
+        });
+
+        self.getMsgCount = ko.computed(function () {
+            console.log("getMsgCount");
+            var count = 0;
+            $.each(self.notifications(), function (index, item) {
+                count++;
+            });
+            return count;
+        });
+
+
+        self.deleteMsg = function (notification) {
+            //alert(notification.Id);
+            var confirmMsg = confirm("Would you like to remove this notification?");
+            if (confirmMsg) {
+                $.ajax({
+                    url: '/Notification/DeleteNotification',
+                    type: 'post',
+                    data: { Id: notification.Id },
+                    success: function (result) {
+                        if (result.Success) {
+                            self.notifications.remove(notification);
+                            if (typeof updateNotificationDashboard == 'function')
+                                updateNotificationDashboard("delete", notification);
+                        } else {
+                            showErrors(result.Message);
+                        }
+                    }
+                });
+            }
+        };
+    }
+
+
+
+    notificationViewModel = new NotificationViewModel();
+
+
+    //setInterval(checkNotifications, 1000);
+    ko.applyBindings(notificationViewModel, document.getElementById('top-bar-menu'));
+})
+var notificationViewModel;
+function NotificationModel(Id, IsRead, CreatedBy, CreatedOn, Message) {
+    var self = this;
+    self.Id = Id;
+    self.IsRead = ko.observable(IsRead);
+    self.CreatedBy = CreatedBy
+    self.CreatedOn = CreatedOn;
+    self.Message = Message;
+    self.Title = ko.computed(function () {
+        console.log("message: " + self.Message);
+        if (self.Message.length > 20) {
+            return self.Message.substring(0, 20) + " ... ";
+        } else {
+            return self.Message;
+        }
+    });
+}
+var data = [];
+
+function getNotificationList() {
+    console.log("Reciving Message ...");
+    $.ajax({
+        url: '/Notification/GetNewNotificationList',
+        type: 'get',
+        dataType: 'json',
+        async: false,
+        success: function (result) {
+            data = $.map(result, function (item) {
+                return new NotificationModel(item.Id, item.IsRead, item.CreatedBy, item.CreatedOn, item.Message);
+            });
+        }
+    });
+}
+
+
+getNotificationList();
+
+function checkNotifications() {
+    getNotificationList();
+    //console.log(data);
+    notificationViewModel.notifications(data);
+}

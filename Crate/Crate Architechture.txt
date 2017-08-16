@@ -1,0 +1,15 @@
+                                Effects the following pages
+
+Admin Login --> CRUD Room --> Room page/Assets Page/ Room Booking/ Asset report/Dashboard  
+                                (Changes should be reflected in the above pages)
+               
+
+
+                CRUD Asset--> Asset Report
+
+                CRUD User --> Account Mgmt --> Send Message --> Asset Reports / reset password
+
+                CRUD Company --> Event(booking)-->Dashboard-->Send Message --> Account Mgmt
+                
+                Send Message --> Personal / Company
+                                  email / SMS / Notification

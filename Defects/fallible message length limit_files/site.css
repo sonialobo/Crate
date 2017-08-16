@@ -1,0 +1,379 @@
+﻿body {
+    background-color: #f2f2f2;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h4 {
+    margin: 15px 0;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input, select {
+	max-width: 285px;
+}
+
+textarea {
+    min-height: 68px;
+    max-width: 281px;
+}
+
+.radio-buttons-form
+{
+    line-height: 55px;
+}
+
+.list-notification ul {
+    list-style: none;
+    padding: 0;
+}
+
+.list-notification ul li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+
+
+
+.agenda-event {
+    display: block;
+}
+
+    .agenda-event .img-circle {
+        display: block;
+        height: 20px;
+        width: 20px;
+        margin-bottom: 5px;
+    }
+
+.field-validation-error {
+    color: #C12626;
+}
+
+
+
+
+
+/* ====================== community board =======================================*/
+
+
+/*.list-upcoming ul li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    padding-bottom: 100px;
+    margin: 5px;
+    min-height: 180px;
+    list-style: none;
+}
+
+.list-upcoming ul li:hover {
+    background-color: #F3f3f3;
+    cursor: pointer;
+}*/
+
+.cbHeader {
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.box ul {
+    padding-left: 25px;
+}
+
+.box ol {
+    padding-left: 25px;
+}
+
+.cbNotificationX {
+    /*position: absolute;*/
+    /*right: 10px;
+    top: 0px;*/
+    font-weight: 500;
+    font-size: x-large;
+    color: gray;
+}
+
+.cbNotificationX:hover {
+    color: red;
+}
+
+.cbNotificationX:active {
+    color: darkred;
+}
+
+.unselectable {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+
+
+
+
+
+/* ======================= Foundation top bar ===================================*/
+
+.top-bar {
+    background-color: #fff;
+    padding: 0px;
+    margin: 0px;
+    box-shadow: 1px 2px 5px grey;
+}
+
+.top-bar .top-bar-left .menu-text {
+    margin: 0px;
+    padding: 0px;
+}
+
+.top-bar .top-bar-left img {
+    height: 44px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.menu li {
+    background-color: #fff;
+}
+
+
+.menu li a {
+    color: #000;
+    border: 3px solid transparent;
+}
+
+.menu li a:hover {
+    background-color: #eee;
+}
+
+.menu li.is-active {
+    background-color: #fafafa;
+}
+
+.top-bar .is-dropdown-submenu-parent > a:after {
+	border-color: #bbb rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)!important; 
+}
+ 
+
+
+
+
+/*========== Login page =========*/
+
+.login-block input {
+    max-width: none;
+}
+
+/*==== Add new company ===*/
+
+#add-new-account-container {
+    margin: 50px 0;
+}
+
+/*==== Calendar ====*/
+tbody tr:nth-child(even) {
+    background-color: #fff !important;
+}
+
+.k-nonwork-hour {
+    background-color: #EFEFEF;
+    color: #000;
+}
+
+footer {
+    bottom: 0;
+    width: 100%;
+}
+
+.thumbBlock .thumbnail {
+    border: 0px;
+}
+
+    .thumbBlock .thumbnail img {
+        margin-left: 0px;
+        max-height:40px
+    }
+
+.thumbBlockWrapp .thumbnail {
+    display: block !important;
+}
+
+.thumbBlock .thumbnail .caption {
+    padding-top: 5px;
+}
+
+    .thumbBlock .thumbnail .caption p {
+        font-size: 11px;
+        padding-left: 5px;
+    }
+
+.thumbBlock .thumbnail .readmoreLink {
+    color: #ff0000;
+    background: none;
+    border: 0px;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding-left: 0px;
+    padding-top: 0px;
+}
+
+.thumbBlock .thumbnail .readmoreLink:hover {
+        text-decoration: underline;
+}
+
+input[type=text]
+{
+    vertical-align: top;
+}
+
+
+.boxhead {
+    background: black;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	color: white;
+}
+
+.box {
+	background: white;
+	background-color: #fff;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 1px 2px 5px grey;
+}
+
+.boxcontent {
+    padding: 10px;
+}
+
+.blackstrip{
+    background: black;
+	border-radius: 5px;
+	color: white;
+    margin-bottom: 20px;
+    box-shadow: 1px 2px 5px grey;
+}
+
+table
+{
+    width: 100%;
+}
+
+p {
+	/*padding-top: 5px;*/
+	padding-right: 10px;
+	padding-left: 10px;
+	/*padding-bottom: 10px;*/
+	
+}
+
+
+h5 {
+    padding-top: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 5px;
+    margin-bottom: 0px;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+h2
+{
+   font-family: 'Open Sans', sans-serif;
+   text-align: center;
+   padding: 20px;
+}
+
+.reset
+{
+    background-color: #ff8800;
+}
+
+.reset:hover
+{
+    background-color: #e27900;
+}
+
+.button{
+    border-radius: 10px;
+}
+
+td .button {
+    margin-bottom: 0px;
+}
+
+/*========= Settings menu ===========*/
+
+.tabs{
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px grey;
+    border: 0px;
+}
+
+
+.tabs-title > a:focus, .tabs-title > a[aria-selected='true'] {
+      background: #000; 
+      color: white;
+
+}
+
+
+.tabs-title a {
+    color: black;
+    font-size: 18px;
+    text-align:center;
+    
+}
+
+.tabs-left a{
+    border-bottom-left-radius: 9px;
+    border-top-left-radius: 9px;
+
+}
+
+.tabs-right a{
+    border-bottom-right-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+.tabs-scale
+{
+    width: 25%;
+}
+
+
+
+/* ============ page buttons ====================*/
+
+.pager.button
+{
+    background-color: #eee;
+    color: #444;
+    line-height: 0;
+    border-radius: 4px;
+    font-weight: bold;
+
+}
+
+.pager.button:hover
+{
+    background-color: #ddd;
+    color: #000;
+}
+
+.pagenum
+{
+    vertical-align: top;
+    padding: 10px;
+    font-weight: bold;
+}
+
+
+a {
+    color: black;
+}
