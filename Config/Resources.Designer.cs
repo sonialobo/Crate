@@ -19,7 +19,7 @@ namespace Crate.Config {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -70,7 +70,7 @@ namespace Crate.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\Nipunika\Desktop\Crate\Crate\Crate\TestData\TestData.xlsx.
+        ///   Looks up a localized string similar to C:\Users\sonia\Desktop\CRATE\Crate\TestData\TestData.xlsx.
         /// </summary>
         internal static string ExcelPath {
             get {
@@ -88,7 +88,7 @@ namespace Crate.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\Nipunika\Desktop\Crate\Crate\Crate\TestReport\Test.html.
+        ///   Looks up a localized string similar to C:\Users\sonia\Desktop\CRATE\Crate\TestReport\Test.html.
         /// </summary>
         internal static string ReportPath {
             get {
@@ -97,7 +97,7 @@ namespace Crate.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\Nipunika\Desktop\Crate\Crate\Crate\Config\Report.xml.
+        ///   Looks up a localized string similar to C:\Users\sonia\Desktop\CRATE\Crate\Config\Report.xml.
         /// </summary>
         internal static string ReportXMLPath {
             get {
@@ -106,7 +106,7 @@ namespace Crate.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\Nipunika\Desktop\Crate\Crate\Crate\ScreenShots\.
+        ///   Looks up a localized string similar to C:\Users\sonia\Desktop\CRATE\Crate\ScreenShots\.
         /// </summary>
         internal static string ScreenShotPath {
             get {

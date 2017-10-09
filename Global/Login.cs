@@ -36,7 +36,7 @@ namespace Crate.Global
 
             //Navigate to test env
             Global.GlobalDefinition.driver.Navigate().GoToUrl(Global.ExcelLib.ReadData(2, "Url"));
-            Global.GlobalDefinition.wait(500);
+            //Global.GlobalDefinition.wait(500);
 
             //Maximize the window
             Global.GlobalDefinition.driver.Manage().Window.Maximize();

@@ -1,5 +1,7 @@
-﻿using Excel;
+﻿
+using Excel;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,10 +19,10 @@ namespace Crate.Global
 
         #region WaitforElement 
 
-        public static void wait(int time)
+        public static IWebElement WaitForElement(IWebDriver driver, By by, int timeOutinSeconds)
         {
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(time));
-
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
+            return (wait.Until(ExpectedConditions.ElementIsVisible(by)));
         }
         #endregion
 
@@ -29,18 +31,19 @@ namespace Crate.Global
         {
             if (Locator == "Id")
             {
-                //driver.FindElement(By.Id(Lvalue)).Clear();
                 driver.FindElement(By.Id(Lvalue)).SendKeys(InputValue);
             }
             else if (Locator == "XPath")
             {
-                // driver.FindElement(By.XPath(Lvalue)).Clear();
                 driver.FindElement(By.XPath(Lvalue)).SendKeys(InputValue);
             }
             else if (Locator == "CSS")
             {
-                // driver.FindElement(By.XPath(Lvalue)).Clear();
                 driver.FindElement(By.CssSelector(Lvalue)).SendKeys(InputValue);
+            }
+            else if (Locator == "Class")
+            {
+                driver.FindElement(By.ClassName(Lvalue)).SendKeys(InputValue);
             }
             else
                 Console.WriteLine("Invalid Locator value");
@@ -93,15 +96,34 @@ namespace Crate.Global
                 driver.FindElement(By.XPath(Lvalue)).Click();
             else if (Locator == "CSS")
                 driver.FindElement(By.CssSelector(Lvalue)).Click();
+            else if (Locator == "Class")
+                driver.FindElement(By.ClassName(Lvalue)).Click();
             else
                 Console.WriteLine("Invalid Locator value");
         }
-        #endregion
+        public static Boolean isElementPresent(string Lvalue)
+        {
+            int count = driver.FindElements(By.XPath(Lvalue)).Count();
+            if (count == 0)
+                return false;
+            else
+                return true;
 
-    }
+        }
+    
+        public static void SelectDropDown(IWebDriver driver, string Locator, string Lvalue, string InputValue)
+        {
+            if (Locator == "Id")
+                new SelectElement(driver.FindElement(By.Id(Lvalue))).SelectByText(InputValue);
+            if (Locator == "XPath")
+                new SelectElement(driver.FindElement(By.XPath(Lvalue))).SelectByText(InputValue);
+        }
+            #endregion
 
-    #region Excel 
-    public class ExcelLib
+        }
+
+        #region Excel 
+        public class ExcelLib
     {
         static List<Datacollection> dataCol = new List<Datacollection>();
 
@@ -200,7 +222,9 @@ namespace Crate.Global
             fileName.Append(ScreenShotFileName);
             fileName.Append(DateTime.Now.ToString("_dd-mm-yyyy_mss"));
             fileName.Append(".jpeg");
-            screenShot.SaveAsFile(fileName.ToString(), System.Drawing.Imaging.ImageFormat.Jpeg);
+#pragma warning disable CS0618 // Type or member is obsolete
+           screenShot.SaveAsFile(fileName.ToString(), ScreenshotImageFormat.Jpeg);
+#pragma warning restore CS0618 // Type or member is obsolete
             return fileName.ToString();
         }
     }

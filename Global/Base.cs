@@ -68,17 +68,17 @@ namespace Crate.Global
         public void TearDown()
         {
             // Screenshot
-            String img = SaveScreenShotClass.SaveScreenshot(GlobalDefinition.driver, "Report");
+           String img = SaveScreenShotClass.SaveScreenshot(GlobalDefinition.driver, "Report");
             test.Log(LogStatus.Info, "Image example: " + img);
            // end test. (Reports)
             extent.EndTest(test);
             // calling Flush writes everything to the log file (Reports)
             extent.Flush();
             // Close the driver :           
-            GlobalDefinition.driver.Close();
+          // GlobalDefinition.driver.Close();
         }
         #endregion
-
+    
     }
 
 }
